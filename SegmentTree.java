@@ -40,7 +40,7 @@ class SegmentTree<T>
 	}
 	T query(int ti,int tl,int tr,int l,int r)
 	{
-		if(r>l || tl>r || tr<l)
+		if(r<l || tl>r || tr<l)
 			return invalid;
 		if(l<=tl && tr<=r)
 			return tree[ti];
