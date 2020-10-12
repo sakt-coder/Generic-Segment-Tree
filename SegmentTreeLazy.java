@@ -55,9 +55,11 @@ class SegmentTree<T,L>
   }
   void push(int ti,int tl,int tr)
   {
-    tree[ti]=updater.update(tree[ti],lazy[ti],tl,tr);
-    lazy[2*ti]=appender.append(lazy[2*ti],lazy[ti],tl,tr);
-    lazy[2*ti+1]=appender.append(lazy[2*ti+1],lazy[ti],tl,tr);
+    int tm=(tl+tr)/2;
+    tree[2*ti]=updater.update(tree[2*ti],lazy[ti],tl,tm);
+    tree[2*ti+1]=updater.update(tree[2*ti+1],lazy[ti],tm+1,tr);
+    lazy[2*ti]=appender.append(lazy[2*ti],lazy[ti],tl,tm);
+    lazy[2*ti+1]=appender.append(lazy[2*ti+1],lazy[ti],tm+1,tr);
     lazy[ti]=lazyinit;
   }
   T query(int l,int r)
